@@ -668,7 +668,7 @@ MonoBehaviour:
   connectMenu: {fileID: 1855066320}
   userNameMenu: {fileID: 1685464462}
   createInput: {fileID: 2134789505}
-  joinButton: {fileID: 0}
+  joinButton: {fileID: 963980005}
   userNameInput: {fileID: 833258180}
   startButton: {fileID: 374579615}
 --- !u!4 &547926359

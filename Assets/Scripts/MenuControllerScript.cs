@@ -49,6 +49,7 @@ public class MenuControllerScript : MonoBehaviour
     {
         userNameMenu.SetActive(false);
         PhotonNetwork.playerName = userNameInput.text;
+        
     }
 
     public void CreateRoom()
