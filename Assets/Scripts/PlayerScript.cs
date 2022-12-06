@@ -1,37 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using ExitGames.Demos.DemoAnimator;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerScript : Photon.MonoBehaviour
 {
-    public PhotonView _photonView;
-    public Rigidbody2D _rigidBody;
-    public SpriteRenderer _spriteRenderer;
+    [SerializeField] private PhotonView view;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
-    public Animator animator;
-    public GameObject playerCamera;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject playerCamera;
 
-    public Text playerNameText;
-
-
-    public bool IsGrounded = false;
-    public float movingSpeed = 5f;
-    public float JumpForce;
-
+    [SerializeField] private Text playerNameText;
+    
+    [SerializeField] private float movingSpeed = 5f;
 
     private void Start()
     {
-        /*
-        _photonView = GetComponent<PhotonView>(); 
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        */
-
-        if (_photonView.isMine)
+        if (view.isMine)
         {
             playerCamera.SetActive(true);
             playerNameText.text = PhotonNetwork.playerName;
@@ -39,13 +23,13 @@ public class PlayerScript : Photon.MonoBehaviour
         else
         {
             playerNameText.text = this.transform.GetComponent<PhotonView>().owner.NickName;
-            // playerNameText.color = Color.cyan;
+            playerNameText.color = Color.cyan;
         }
     }
 
     private void Update()
     {
-        if (_photonView.isMine)
+        if (view.isMine)
         {
             CheckInput();
         }
@@ -84,12 +68,12 @@ public class PlayerScript : Photon.MonoBehaviour
     [PunRPC]
     private void FlipTrue()
     {
-        _spriteRenderer.flipX = true;
+        spriteRenderer.flipX = true;
     }
 
     [PunRPC]
     private void FlipFalse()
     {
-        _spriteRenderer.flipX = false;
+        spriteRenderer.flipX = false;
     }
 }
