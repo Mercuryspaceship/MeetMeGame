@@ -1369,9 +1369,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuControllerScript, Assembly-CSharp
-        m_MethodName: SetUserName
+      - m_Target: {fileID: 547926360}
+        m_TargetAssemblyTypeName: RegisterMenuControllerScript, Assembly-CSharp
+        m_MethodName: OnCLickOk
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1453,7 +1453,6 @@ MonoBehaviour:
   registerMenu: {fileID: 297109001}
   eMailInput: {fileID: 963980005}
   passwordInput: {fileID: 2134789505}
-  startButton: {fileID: 0}
   maxPlayersPerRoom: 10
 --- !u!4 &547926359
 Transform:
@@ -1482,11 +1481,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b8a9d680814ae41a9bd3ef2a07306a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userNameInput: {fileID: 0}
-  eMailInput: {fileID: 0}
-  passwordInput: {fileID: 0}
-  confirmPasswordInput: {fileID: 0}
-  phoneNumberInput: {fileID: 0}
+  registerMenu: {fileID: 297109001}
+  userNameInput: {fileID: 1267752052}
+  eMailInput: {fileID: 233331872}
+  passwordInput: {fileID: 1330811711}
+  confirmPasswordInput: {fileID: 813030829}
   errorText: {fileID: 983942996}
 --- !u!1 &548795014
 GameObject:
@@ -2431,8 +2430,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -121.49951}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0.0027809, y: -120.11}
+  m_SizeDelta: {x: 228.36, y: 52.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &983942996
 MonoBehaviour:
@@ -2456,10 +2455,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3033,7 +3032,7 @@ GameObject:
   - component: {fileID: 1330811712}
   - component: {fileID: 1330811711}
   m_Layer: 5
-  m_Name: PasswordImput
+  m_Name: PasswordInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

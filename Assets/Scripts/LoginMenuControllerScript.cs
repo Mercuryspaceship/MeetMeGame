@@ -14,8 +14,6 @@ public class LoginMenuControllerScript : MonoBehaviour
     [SerializeField] private InputField eMailInput;
     [SerializeField] private InputField passwordInput;
     
-    [SerializeField] private GameObject startButton;
-
     private String _defaultRoomName = "defaultRoom";
     [SerializeField] private byte maxPlayersPerRoom = 10;
 
