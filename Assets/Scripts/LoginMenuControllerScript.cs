@@ -9,14 +9,11 @@ using UnityEngine.Windows.WebCam;
 public class LoginMenuControllerScript : MonoBehaviour
 {
     [SerializeField] private string versionName = "0.1";
-    [SerializeField] private GameObject loginMenu;
     [SerializeField] private GameObject registerMenu;
 
     [SerializeField] private InputField eMailInput;
     [SerializeField] private InputField passwordInput;
-
-    [SerializeField] private InputField userNameInput;
-
+    
     [SerializeField] private GameObject startButton;
 
     private String _defaultRoomName = "defaultRoom";
@@ -37,18 +34,6 @@ public class LoginMenuControllerScript : MonoBehaviour
     {
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         Debug.Log("Connected");
-    }
-
-    public void OnUserNameChanged()
-    {
-        if (userNameInput.text.Length >= 3)
-        {
-            startButton.SetActive(true);
-        }
-        else
-        {
-            startButton.SetActive(false);
-        }
     }
 
     private void SetUserName()
