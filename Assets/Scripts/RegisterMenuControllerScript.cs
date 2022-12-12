@@ -22,12 +22,19 @@ public class RegisterMenuControllerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        errorText.text = "";
+        ResetMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool UserNameIsValid()
     {
+        String username = userNameInput.text;
+
+        if (username.Length >= 5)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private bool UserExists()
@@ -80,7 +87,11 @@ public class RegisterMenuControllerScript : MonoBehaviour
 
     public void OnCLickOk()
     {
-        if (UserExists())
+        if (!UserNameIsValid())
+        {
+            errorText.text = "Username is too short!\nPlease choose a username with at least 5 characters.";
+        }
+        else if (UserExists())
         {
             errorText.text = "User already exists!\nPlease choose another username.";
         }else if (!EMailIsValid())
@@ -102,6 +113,19 @@ public class RegisterMenuControllerScript : MonoBehaviour
         {
             //TODO: database call
             registerMenu.SetActive(false);
+            ResetMenu();
         }
+    }
+
+    public void OnCLickBack()
+    {
+        registerMenu.SetActive(false);
+        ResetMenu();
+    }
+
+    private void ResetMenu()
+    {
+        userNameInput.text = eMailInput.text = passwordInput.text = confirmPasswordInput.text = errorText.text = "";
+
     }
 }

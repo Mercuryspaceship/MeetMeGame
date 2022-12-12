@@ -9,7 +9,12 @@ using UnityEngine.Windows.WebCam;
 public class LoginMenuControllerScript : MonoBehaviour
 {
     [SerializeField] private string versionName = "0.1";
+    
     [SerializeField] private GameObject registerMenu;
+
+    [SerializeField] private Text errorText;
+
+    [SerializeField] private GameObject forgotPasswordMenu;
 
     [SerializeField] private InputField eMailInput;
     [SerializeField] private InputField passwordInput;
@@ -25,7 +30,7 @@ public class LoginMenuControllerScript : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        // userNameMenu.SetActive(true);
+        errorText.text = "";
     }
 
     private void OnConnectedToMaster()
@@ -83,11 +88,20 @@ public class LoginMenuControllerScript : MonoBehaviour
             SetUserName();
             JoinRoom();
         }
+        else
+        {
+            errorText.text = "Login credentials are incorrect!";
+        }
     }
 
     public void OnRegisterClicked()
     {
         registerMenu.SetActive(true);
+    }
+    
+    public void OnPasswordForgotClicked()
+    {
+        forgotPasswordMenu.SetActive(true);
     }
     
     
