@@ -13,7 +13,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void start()
     {
-        Instantiate(eingang, new Vector3(0,0,6), Quaternion.identity);
+        Instantiate(eingang, new Vector3(0,0,5), Quaternion.identity);
     }
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class GameManagerScript : MonoBehaviour
         float randomValue = Random.Range(-1f, 1f);
 
         PhotonNetwork.Instantiate(playerPrefab.name,
-            new Vector3(0, 3, 5),
+            new Vector3(1.6f, 13.2f, 5),
             Quaternion.identity, 0);
         gameCanvas.SetActive(false);
         sceneCamera.SetActive(false);

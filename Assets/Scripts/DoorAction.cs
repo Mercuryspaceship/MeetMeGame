@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class DoorAction : MonoBehaviour
 {
-    private bool collider = false;
     public GameObject popupMenu; // Reference to the popup menu game object
-    public GameObject player;
 
     private void Start()
     {
@@ -27,7 +25,6 @@ public class DoorAction : MonoBehaviour
         if (other.gameObject.tag == "player")
         {
             popupMenu.SetActive(false);
-            collider = false;
         }
         
     }
