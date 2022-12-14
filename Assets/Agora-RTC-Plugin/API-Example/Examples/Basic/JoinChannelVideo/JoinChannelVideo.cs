@@ -8,7 +8,8 @@ using Logger = Agora.Util.Logger;
 
 namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 {
-    public class JoinChannelVideo : MonoBehaviour
+    //Ricky changed
+    public class JoinChannelVideo : Photon.MonoBehaviour
     {
         [FormerlySerializedAs("appIdInput")]
         [SerializeField]
@@ -30,7 +31,9 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
         public Text LogText;
         internal Logger Log;
         internal IRtcEngine RtcEngine = null;
-       
+        
+        //Ricky wrote
+        private static int userCount = 0;
 
         // Use this for initialization
         private void Start()
@@ -90,7 +93,9 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             RtcEngine.SetChannelProfile(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_COMMUNICATION);
             RtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             
-            RtcEngine.JoinChannel(_token, _channelName);
+            //RtcEngine.JoinChannel(_token, _channelName);
+            RtcEngine.JoinChannelWithUserAccount(_token, _channelName, PhotonNetwork.playerName);
+
         }
 
         private void OnDestroy()
@@ -117,6 +122,9 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 
             // create a GameObject and assign to this new user
             var videoSurface = MakeImageSurface(uid.ToString());
+
+            
+            
             if (ReferenceEquals(videoSurface, null)) return;
             // configure videoSurface
             if (uid == 0)
@@ -125,13 +133,19 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             }
             else
             {
+
                 videoSurface.SetForUser(uid, channelId, VIDEO_SOURCE_TYPE.VIDEO_SOURCE_REMOTE);
             }
 
             videoSurface.OnTextureSizeModify += (int width, int height) =>
             {
+                //Ricky wrote
+                float size = 0.9f;
+                
                 float scale = (float)height / (float)width;
-                videoSurface.transform.localScale = new Vector3(-5, 5 * scale, 1);
+                
+                //Ricky changed
+                videoSurface.transform.localScale = new Vector3(-size, size * scale, 1);
                 Debug.Log("OnTextureSizeModify: " + width + "  " + height);
             };
 
@@ -191,11 +205,30 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 
             // set up transform
             go.transform.Rotate(0f, 0.0f, 180.0f);
-            go.transform.localPosition = Vector3.zero;
+            // Ricky changed
+            // go.transform.localPosition = new Vector3(-137.6f, 79.8f, 0);
+            
+            //Ricky wrote
+
+            if (go.name.Equals("0"))
+            {
+                go.transform.localPosition = new Vector3(-130f, 75f, 0);
+            }
+            else
+            {
+                if(userCount == 1)
+                go.transform.localPosition = new Vector3(-30f, 75f, 0);
+                else if (userCount ==2)
+                    go.transform.localPosition = new Vector3(70f, 75f, 0);
+            }
+            
             go.transform.localScale = new Vector3(2f, 3f, 1f);
 
             // configure videoSurface
             var videoSurface = go.AddComponent<VideoSurface>();
+
+            userCount++;
+            
             return videoSurface;
         }
 
