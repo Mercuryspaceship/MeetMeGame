@@ -9,6 +9,8 @@ public class PlayerScript : Photon.MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject playerCamera;
 
+    [SerializeField] private GameObject videoCanvas;
+    
     [SerializeField] private Text playerNameText;
     
     [SerializeField] private float movingSpeed = 5f;
@@ -18,6 +20,8 @@ public class PlayerScript : Photon.MonoBehaviour
         if (view.isMine)
         {
             playerCamera.SetActive(true);
+            videoCanvas.SetActive(true);
+            
             playerNameText.text = PhotonNetwork.playerName;
         }
         else

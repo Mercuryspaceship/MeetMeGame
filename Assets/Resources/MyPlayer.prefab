@@ -103,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &822299605344073489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -542,6 +542,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2666341820504474628}
   animator: {fileID: 2666341820504474629}
   playerCamera: {fileID: 573332728716245396}
+  videoCanvas: {fileID: 1302951927224673238}
   playerNameText: {fileID: 1714325273221932442}
   movingSpeed: 5
 --- !u!114 &2666341820504474745
