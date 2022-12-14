@@ -77,7 +77,7 @@ public class RegisterMenuControllerScript : MonoBehaviour
 
     private bool PasswordsMatch()
     {
-        if (passwordInput.text.Contains(confirmPasswordInput.text))
+        if (passwordInput.text.Equals(confirmPasswordInput.text))
         {
             return true;
         }
