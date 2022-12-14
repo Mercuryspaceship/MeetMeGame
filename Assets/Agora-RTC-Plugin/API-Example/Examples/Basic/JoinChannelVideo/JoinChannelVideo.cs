@@ -119,6 +119,8 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             {
                 return; // reuse
             }
+            
+            
 
             // create a GameObject and assign to this new user
             var videoSurface = MakeImageSurface(uid.ToString());
@@ -223,7 +225,9 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             }
             
             go.transform.localScale = new Vector3(2f, 3f, 1f);
-
+            
+            
+            
             // configure videoSurface
             var videoSurface = go.AddComponent<VideoSurface>();
 

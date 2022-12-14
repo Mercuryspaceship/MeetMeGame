@@ -21,7 +21,6 @@ public class PlayerScript : Photon.MonoBehaviour
         {
             playerCamera.SetActive(true);
             videoCanvas.SetActive(true);
-            
             playerNameText.text = PhotonNetwork.playerName;
         }
         else
