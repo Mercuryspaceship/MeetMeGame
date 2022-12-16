@@ -3347,7 +3347,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
             this.StoreInstantiationData(instantiationId, incomingInstantiationData);
 
             // load the resource and set it's values before instantiating it:
-            GameObject go = (GameObject)GameObject.Instantiate(resourceGameObject, position, rotation);
+                GameObject go = (GameObject)GameObject.Instantiate(resourceGameObject, position, rotation);
 
             for (int i = 0; i < viewsIDs.Length; i++)
             {
