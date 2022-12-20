@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -78,5 +79,28 @@ public class PlayerScript : Photon.MonoBehaviour
     private void FlipFalse()
     {
         spriteRenderer.flipX = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (view.isMine)
+        {
+            if (col.gameObject.tag == "stateDoor")
+            {
+                col.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                Debug.Log("COLLIDER STATE DOOR");
+            }
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (view.isMine)
+        {
+            if (col.gameObject.tag == "stateDoor")
+            {
+                col.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            }
+        }
     }
 }
