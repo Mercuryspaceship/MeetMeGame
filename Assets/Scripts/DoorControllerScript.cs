@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorControllerScript : MonoBehaviour
 {
@@ -23,12 +24,16 @@ public class DoorControllerScript : MonoBehaviour
         if(door.CompareTag("mainDoor"))
         {
             Debug.Log("MAIN DOOR YES");
-            
-            
+
+            SceneManager.LoadScene("LoginMenu");
+            PhotonNetwork.Disconnect();
         }
         else if(door.CompareTag("stateDoor"))
         {
-          
+            if (door.name.Contains("Berlin"))
+            {
+                PhotonNetwork.LoadLevel("Berlin");
+            }
         }
       
     }

@@ -21,7 +21,6 @@ public class GameManagerScript : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        float randomValue = Random.Range(-1f, 1f);
 
         PhotonNetwork.Instantiate(playerPrefab.name,
             new Vector3(1.6f, 13.2f, 5),
