@@ -636,7 +636,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_Name
-      value: DoorBW
+      value: "DoorBaden-W\xFCrttemberg"
       objectReference: {fileID: 0}
     - target: {fileID: 6997697783494620421, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_RootOrder
@@ -1042,7 +1042,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_Name
-      value: DoorSA
+      value: DoorSachsen-Anhalt
       objectReference: {fileID: 0}
     - target: {fileID: 6997697783494620421, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_RootOrder
@@ -2190,7 +2190,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_Name
-      value: DoorRP
+      value: DoorRheinland-Pfalz
       objectReference: {fileID: 0}
     - target: {fileID: 6997697783494620421, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_RootOrder
@@ -4508,7 +4508,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_Name
-      value: DoorNW
+      value: DoorNordrhein-Westfalen
       objectReference: {fileID: 0}
     - target: {fileID: 6997697783494620421, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_RootOrder
@@ -4900,7 +4900,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_Name
-      value: DoorSH
+      value: DoorSchleswig-Holstein
       objectReference: {fileID: 0}
     - target: {fileID: 6997697783494620421, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_RootOrder
@@ -5124,7 +5124,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_Name
-      value: DoorMV
+      value: DoorMecklenburg-Vorprommern
       objectReference: {fileID: 0}
     - target: {fileID: 6997697783494620421, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_RootOrder
