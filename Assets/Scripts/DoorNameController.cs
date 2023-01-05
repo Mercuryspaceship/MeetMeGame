@@ -6,12 +6,21 @@ using UnityEngine.UI;
 
 public class DoorNameController : MonoBehaviour
 {
+    [SerializeField] private Text messageText;
     [SerializeField] private Text roomNameText;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        roomNameText.text = gameObject.name.Substring(4) + ":";
+        if (gameObject.CompareTag("mainDoor"))
+        {
+            messageText.text = "Logout and go to";
+            roomNameText.text = "Login Menu?";
+        }
+        else if (gameObject.CompareTag("stateDoor"))
+        {
+            roomNameText.text = gameObject.name.Substring(4) + ":";
+        } 
     }
 
     // Update is called once per frame

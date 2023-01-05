@@ -6,6 +6,8 @@ TagManager:
   tags:
   - GamerTag
   - stateDoor
+  - player
+  - mainDoor
   layers:
   - Default
   - TransparentFX

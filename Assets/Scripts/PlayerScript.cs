@@ -81,25 +81,25 @@ public class PlayerScript : Photon.MonoBehaviour
         spriteRenderer.flipX = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (view.isMine)
         {
-            if (col.gameObject.tag == "stateDoor")
+            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "mainDoor")
             {
-                col.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-                Debug.Log("COLLIDER STATE DOOR");
+                collider.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(true);
+                Debug.Log("COLLIDER DOOR");
             }
         }
     }
     
-    private void OnTriggerExit2D(Collider2D col)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         if (view.isMine)
         {
-            if (col.gameObject.tag == "stateDoor")
+            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "mainDoor")
             {
-                col.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+                collider.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(false);
             }
         }
     }
