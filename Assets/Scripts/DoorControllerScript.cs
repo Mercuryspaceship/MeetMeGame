@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorControllerScript : MonoBehaviour
 {
+    [SerializeField] private GameObject door;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,22 @@ public class DoorControllerScript : MonoBehaviour
 
     public void OnClickYes()
     {
-        
+        if(door.CompareTag("mainDoor"))
+        {
+            Debug.Log("MAIN DOOR YES");
+            
+            
+        }
+        else if(door.CompareTag("stateDoor"))
+        {
+          
+        }
+      
+    }
+    
+    public void OnClickNo()
+    {
+        Debug.Log("DOOR NO");
+        door.transform.Find("DoorPopUp").gameObject.SetActive(false);
     }
 }

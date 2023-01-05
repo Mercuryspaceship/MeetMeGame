@@ -6,14 +6,13 @@ using Random = UnityEngine.Random;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public GameObject playerPrefab;
-    public GameObject gameCanvas;
-    public GameObject sceneCamera;
-    public Transform eingang;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject gameCanvas;
+    [SerializeField] private GameObject sceneCamera;
 
     public void start()
     {
-        Instantiate(eingang, new Vector3(0,0,5), Quaternion.identity);
+       
     }
     private void Awake()
     {

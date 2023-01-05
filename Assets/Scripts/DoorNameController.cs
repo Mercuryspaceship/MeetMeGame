@@ -14,12 +14,12 @@ public class DoorNameController : MonoBehaviour
     {
         if (gameObject.CompareTag("mainDoor"))
         {
-            messageText.text = "Logout and go to";
-            roomNameText.text = "Login Menu?";
+            messageText.text = "Logout and go to Login Menu?";
+            roomNameText.text = "";
         }
         else if (gameObject.CompareTag("stateDoor"))
         {
-            roomNameText.text = gameObject.name.Substring(4) + ":";
+            roomNameText.text = gameObject.name.Substring(4);
         } 
     }
 
