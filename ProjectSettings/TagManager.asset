@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GamerTag
+  - stateDoor
   - player
+  - mainDoor
   layers:
   - Default
   - TransparentFX
