@@ -33,6 +33,7 @@ public class DoorControllerScript : MonoBehaviour
             if (door.name.Contains("Berlin"))
             {
                 PhotonNetwork.LoadLevel("Berlin");
+                Debug.Log("Berlin");
             }
         }
       
