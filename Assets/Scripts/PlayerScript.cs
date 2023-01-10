@@ -1,8 +1,9 @@
 using System;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerScript : Photon.MonoBehaviour
+public class PlayerScript : MonoBehaviourPun
 {
     [SerializeField] private PhotonView view;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -18,22 +19,22 @@ public class PlayerScript : Photon.MonoBehaviour
 
     private void Start()
     {
-        if (view.isMine)
+        if (view.IsMine)
         {
             playerCamera.SetActive(true);
             videoCanvas.SetActive(true);
-            playerNameText.text = PhotonNetwork.playerName;
+            playerNameText.text = PhotonNetwork.LocalPlayer.NickName;
         }
         else
         {
-            playerNameText.text = this.transform.GetComponent<PhotonView>().owner.NickName;
+            playerNameText.text = this.transform.GetComponent<PhotonView>().Owner.NickName;
             playerNameText.color = Color.cyan;
         }
     }
 
     private void Update()
     {
-        if (view.isMine)
+        if (view.IsMine)
         {
             CheckInput();
         }
@@ -51,12 +52,12 @@ public class PlayerScript : Photon.MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            photonView.RPC("FlipTrue", PhotonTargets.AllBuffered);
+            photonView.RPC("FlipTrue", RpcTarget.AllBuffered);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            photonView.RPC("FlipFalse", PhotonTargets.AllBuffered);
+            photonView.RPC("FlipFalse", RpcTarget.AllBuffered);
         }
         
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
@@ -83,21 +84,20 @@ public class PlayerScript : Photon.MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (view.isMine)
+        if (view.IsMine)
         {
-            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "mainDoor")
+            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "loginMenuDoor" || collider.gameObject.tag == "mainRoomDoor" )
             {
                 collider.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(true);
-                Debug.Log("COLLIDER DOOR");
             }
         }
     }
     
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (view.isMine)
+        if (view.IsMine)
         {
-            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "mainDoor")
+            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "loginMenuDoor" || collider.gameObject.tag == "mainRoomDoor")
             {
                 collider.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(false);
             }

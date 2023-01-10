@@ -1316,7 +1316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &449836933
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1324,7 +1324,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449836932}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &449836934
 Camera:
   m_ObjectHideFlags: 0
@@ -2308,7 +2308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649434207}
-  - component: {fileID: 649434206}
+  - component: {fileID: 649434208}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2316,21 +2316,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &649434206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649434205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afa12c387f80160428275ab4ea533d86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2666341820504474746, guid: 28b0c123bd0d32f4ebe36f8842b2726f, type: 3}
-  gameCanvas: {fileID: 947158052}
-  sceneCamera: {fileID: 449836932}
 --- !u!4 &649434207
 Transform:
   m_ObjectHideFlags: 0
@@ -2346,6 +2331,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649434208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649434205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa12c387f80160428275ab4ea533d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 2666341820504474746, guid: 28b0c123bd0d32f4ebe36f8842b2726f, type: 3}
+  roomName: Berlin
 --- !u!1 &649525591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,7 +3600,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 649434206}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
         m_MethodName: SpawnPlayer
         m_Mode: 1
@@ -4853,7 +4852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_TagString
-      value: mainDoor
+      value: mainRoomDoor
       objectReference: {fileID: 0}
     - target: {fileID: 3831459838823506564, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_LocalScale.x

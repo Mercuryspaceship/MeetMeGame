@@ -3,13 +3,14 @@ using UnityEngine.UI;
 using UnityEngine.Serialization;
 using Agora.Rtc;
 using Agora.Util;
+using Photon.Pun;
 using Logger = Agora.Util.Logger;
 
 
 namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 {
     //Ricky changed
-    public class JoinChannelVideo : Photon.MonoBehaviour
+    public class JoinChannelVideo : MonoBehaviourPun
     {
         [FormerlySerializedAs("appIdInput")]
         [SerializeField]
@@ -94,7 +95,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             RtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
             
             //RtcEngine.JoinChannel(_token, _channelName);
-            RtcEngine.JoinChannelWithUserAccount(_token, _channelName, PhotonNetwork.playerName);
+            RtcEngine.JoinChannelWithUserAccount(_token, _channelName, PhotonNetwork.LocalPlayer.NickName);
 
         }
 

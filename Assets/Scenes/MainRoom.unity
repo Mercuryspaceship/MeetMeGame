@@ -1526,7 +1526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &449836933
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1534,7 +1534,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 449836932}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &449836934
 Camera:
   m_ObjectHideFlags: 0
@@ -2529,9 +2529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2666341820504474746, guid: 28b0c123bd0d32f4ebe36f8842b2726f, type: 3}
-  gameCanvas: {fileID: 947158052}
-  sceneCamera: {fileID: 449836932}
-  eingang: {fileID: 0}
+  roomName: Main
 --- !u!4 &649434207
 Transform:
   m_ObjectHideFlags: 0
@@ -5653,7 +5651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3039699218436256137, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_TagString
-      value: mainDoor
+      value: loginMenuDoor
       objectReference: {fileID: 0}
     - target: {fileID: 3831459838823506564, guid: 148c11f911311d845933e132313dbb08, type: 3}
       propertyPath: m_LocalScale.x

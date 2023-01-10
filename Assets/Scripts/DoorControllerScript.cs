@@ -1,39 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class DoorControllerScript : MonoBehaviour
+public class DoorControllerScript : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject door;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void OnClickYes()
     {
-        if(door.CompareTag("mainDoor"))
+        if(door.CompareTag("loginMenuDoor"))
         {
-            Debug.Log("MAIN DOOR YES");
-
             SceneManager.LoadScene("LoginMenu");
             PhotonNetwork.Disconnect();
         }
+        else if (door.CompareTag("mainRoomDoor"))
+        {
+            PhotonNetwork.LeaveRoom();
+            SceneManager.LoadScene("MainRoom");
+        }
         else if(door.CompareTag("stateDoor"))
         {
-            if (door.name.Contains("Berlin"))
-            {
-                PhotonNetwork.LoadLevel("Berlin");
-            }
+                PhotonNetwork.LeaveRoom();
+                SceneManager.LoadScene(door.name.Substring(4));
         }
       
     }

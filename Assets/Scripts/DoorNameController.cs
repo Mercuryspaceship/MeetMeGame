@@ -12,10 +12,14 @@ public class DoorNameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.CompareTag("mainDoor"))
+        if (gameObject.CompareTag("loginMenuDoor"))
         {
             messageText.text = "Logout and go to Login Menu?";
             roomNameText.text = "";
+        }
+        else if (gameObject.CompareTag("mainRoomDoor"))
+        {
+            roomNameText.text = "Go to Main Room?";
         }
         else if (gameObject.CompareTag("stateDoor"))
         {
