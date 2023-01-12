@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - mainRoomDoor
   - loginMenuDoor
+  - meetingRoom
   layers:
   - Default
   - TransparentFX

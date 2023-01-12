@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviourPun
     [SerializeField] private GameObject playerCamera;
 
     [SerializeField] private GameObject videoCanvas;
-    
+
     [SerializeField] private Text playerNameText;
     
     [SerializeField] private float movingSpeed = 5f;
@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviourPun
         if (view.IsMine)
         {
             playerCamera.SetActive(true);
-            videoCanvas.SetActive(true);
+
             playerNameText.text = PhotonNetwork.LocalPlayer.NickName;
         }
         else
@@ -82,25 +82,36 @@ public class PlayerScript : MonoBehaviourPun
         spriteRenderer.flipX = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (view.IsMine)
         {
-            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "loginMenuDoor" || collider.gameObject.tag == "mainRoomDoor" )
+            if (col.gameObject.CompareTag("stateDoor")  || col.gameObject.CompareTag("loginMenuDoor") || col.gameObject.CompareTag("mainRoomDoor"))
             {
-                collider.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(true);
+                col.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(true);
+            }
+
+            if (col.gameObject.CompareTag("meetingRoom"))
+            {
+                videoCanvas.SetActive(true);
             }
         }
     }
     
-    private void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D col)
     {
         if (view.IsMine)
         {
-            if (collider.gameObject.tag == "stateDoor" || collider.gameObject.tag == "loginMenuDoor" || collider.gameObject.tag == "mainRoomDoor")
+            if (col.gameObject.CompareTag("stateDoor")  || col.gameObject.CompareTag("loginMenuDoor") || col.gameObject.CompareTag("mainRoomDoor"))
             {
-                collider.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(false);
+                col.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(false);
+            }
+
+            if (col.gameObject.CompareTag("meetingRoom"))
+            {
+                videoCanvas.SetActive(false);
             }
         }
     }
+    
 }
