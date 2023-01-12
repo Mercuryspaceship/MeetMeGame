@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Photon/PhotonChat/Demos/DemoChat/Editor.meta
+guid: 0108119facb89aa4b8bf7e3c6ab1f46a
+folderAsset: yes
+DefaultImporter:
+========
 guid: a5f4659a846fc4f949a2de2a45e2d629
 PrefabImporter:
+>>>>>>>> 1ba59918fef163efb76e6bd17b76223f58aba6c9:Assets/Prefabs/Floor.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

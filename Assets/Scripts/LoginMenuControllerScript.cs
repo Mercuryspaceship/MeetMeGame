@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Windows.WebCam;
 
-public class LoginMenuControllerScript : MonoBehaviour
+public class LoginMenuControllerScript : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private string versionName = "0.1";
+    private string _gameVersion = "1";
     
+    [SerializeField] private string versionName = "0.1";
+
     [SerializeField] private GameObject registerMenu;
 
     [SerializeField] private Text errorText;
@@ -19,12 +23,14 @@ public class LoginMenuControllerScript : MonoBehaviour
     [SerializeField] private InputField eMailInput;
     [SerializeField] private InputField passwordInput;
     
-    private String _defaultRoomName = "defaultRoom";
+    private String _defaultRoomName = "MainRoom";
     [SerializeField] private byte maxPlayersPerRoom = 10;
 
     private void Awake()
     {
-        PhotonNetwork.ConnectUsingSettings(versionName);
+            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.GameVersion = _gameVersion;
+
     }
     
     // Start is called before the first frame update
@@ -33,34 +39,29 @@ public class LoginMenuControllerScript : MonoBehaviour
         errorText.text = "";
     }
 
-    private void OnConnectedToMaster()
-    {
-        PhotonNetwork.JoinLobby(TypedLobby.Default);
-        Debug.Log("Connected");
-    }
-
-    private void SetUserName()
-    {
-        // registerMenu.SetActive(false);
-        PhotonNetwork.playerName = eMailInput.text;
+    public override void OnConnectedToMaster(){
+        Debug.Log("001: Connected to MASTER");
         
+        // PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
 
-    public void CreateRoom()
-    {
-        PhotonNetwork.CreateRoom(_defaultRoomName, new RoomOptions() { MaxPlayers = maxPlayersPerRoom }, null);
-    }
-    
     private void JoinRoom()
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = maxPlayersPerRoom;
         PhotonNetwork.JoinOrCreateRoom(_defaultRoomName, roomOptions, TypedLobby.Default);
     }
-
-    private void OnJoinedRoom()
+    
+    public override void OnJoinedRoom()
     {
+        Debug.Log("001: Joined the ROOM: " + _defaultRoomName);
+
         PhotonNetwork.LoadLevel("MainRoom");
+    }
+    
+    private void SetUserName()
+    {
+        PhotonNetwork.LocalPlayer.NickName = eMailInput.text;
     }
 
     private bool UserExists()
