@@ -8,7 +8,7 @@ public class DoorNameController : MonoBehaviour
 {
     [SerializeField] private Text messageText;
     [SerializeField] private Text roomNameText;
-
+    [SerializeField] private GameObject doorNameText;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +16,17 @@ public class DoorNameController : MonoBehaviour
         {
             messageText.text = "Logout and go to Login Menu?";
             roomNameText.text = "";
+            doorNameText.GetComponent<TextMeshProUGUI>().text = "Logout";
         }
         else if (gameObject.CompareTag("mainRoomDoor"))
         {
             roomNameText.text = "Go to Main Room?";
+            doorNameText.GetComponent<TextMeshProUGUI>().text = "Main room";
         }
         else if (gameObject.CompareTag("stateDoor"))
         {
             roomNameText.text = gameObject.name.Substring(4);
+            doorNameText.GetComponent<TextMeshProUGUI>().text = gameObject.name.Substring(4);
         } 
     }
 
