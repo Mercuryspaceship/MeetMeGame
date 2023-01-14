@@ -103,6 +103,11 @@ public class PlayerScript : MonoBehaviourPun
 
             }
         }
+
+        if (!view.IsMine)
+        {
+            Debug.Log("SOMEONE ELSE ENTERED");
+        }
     }
     
     private void OnTriggerExit2D(Collider2D col)
@@ -125,11 +130,15 @@ public class PlayerScript : MonoBehaviourPun
         
         if (!view.IsMine)
         {
+            Debug.Log("SOMEONE ELSE LEFT");
+
+            /*
             if (col.gameObject.CompareTag("meetingRoom"))
             {
                 joinChannelVideo.Start();
                 joinChannelVideo.OnDestroy();
             }
+            */
         }
     }
     
