@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 using Agora.Rtc;
 using Agora.Util;
 using Photon.Pun;
+using Debug = UnityEngine.Debug;
 using Logger = Agora.Util.Logger;
 using Random = UnityEngine.Random;
 
@@ -32,11 +34,13 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
         internal IRtcEngine RtcEngine = null;
 
         //Ricky wrote
-        private static int userCount = 0;
+        public static int userCount = 0;
 
         // Use this for initialization
         public void Start()
         {
+            userCount = 0;
+            
             LoadAssetData();
             if (CheckAppId())
             {
@@ -114,10 +118,25 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
         public void OnDestroy()
         {
             Debug.Log("OnDestroy");
+
             if (RtcEngine == null) return;
             RtcEngine.InitEventHandler(null);
             RtcEngine.LeaveChannel();
             RtcEngine.Dispose();
+            
+            DestroyAllVideoSurfaces();
+        }
+
+        private void DestroyAllVideoSurfaces()
+        {
+            GameObject[] videoSurfaces = GameObject.FindGameObjectsWithTag("videoSurface");
+            
+            Debug.Log("Video Surfaces found:" + videoSurfaces.Length + "," + videoSurfaces.ToString());
+            
+            foreach (GameObject videoSurface in videoSurfaces)
+            {
+                Destroy(videoSurface);
+            }
         }
 
         internal string GetChannelName()
@@ -160,7 +179,9 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
                 videoSurface.transform.localScale = new Vector3(-size, size * scale, 1);
                 Debug.Log("OnTextureSizeModify: " + width + "  " + height);
             };
-
+            
+            videoSurface.gameObject.tag = "videoSurface";
+            
             videoSurface.SetEnable(true);
         }
 
@@ -186,6 +207,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 
             // configure videoSurface
             var videoSurface = go.AddComponent<VideoSurface>();
+
             return videoSurface;
         }
 
@@ -221,6 +243,8 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             // go.transform.localPosition = new Vector3(-137.6f, 79.8f, 0);
 
             //Ricky wrote
+
+            Debug.Log("USERCOUNT :" + userCount);
 
             if (go.name.Equals("0"))
             {
@@ -315,6 +339,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
         {
             _videoSample.Log.UpdateLog(string.Format("OnUserJoined uid: ${0} elapsed: ${1}", uid, elapsed));
             JoinChannelVideo.MakeVideoView(uid, _videoSample.GetChannelName());
+            //JoinChannelVideo.userCount++;
         }
 
         public override void OnUserOffline(RtcConnection connection, uint uid, USER_OFFLINE_REASON_TYPE reason)
@@ -322,6 +347,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             _videoSample.Log.UpdateLog(string.Format("OnUserOffLine uid: ${0}, reason: ${1}", uid,
                 (int)reason));
             JoinChannelVideo.DestroyVideoView(uid);
+            JoinChannelVideo.userCount--;
         }
 
         public override void OnUplinkNetworkInfoUpdated(UplinkNetworkInfo info)
