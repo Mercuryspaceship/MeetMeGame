@@ -73,7 +73,8 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 
             tokens.Add("Berlin",
                 "007eJxTYLBaOH3ezjNf9u06MI8l+mb/DPnnrmVtzwNL/ErvHHB7WPBfgSE1ycgy1TDNKM0yycjEyMIsKSnZzMLS0sIwzdTE0CTVooj3cHJDICPDIlErRkYGCATx2RicUotyMvMYGAB3fCIw");
-
+            tokens.Add("Brandenburg", "007eJxTYMg88HNiwbTmNwyG//kUTy/7z/Cu43mOzv20navuXxDkOc6qwJCaZGSZaphmlGaZZGRiZGGWlJRsZmFpaWGYZmpiaJJqMc/scHJDICPDxxudLIwMEAjiczM4FSXmpaTmJZUWpTMwAADpdCSC");
+            
             string roomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
             _token = tokens[roomName];

@@ -14,6 +14,8 @@ public class GameManagerScript : MonoBehaviourPunCallbacks
     
     private void Awake()
     {
+        roomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        
         if (PhotonNetwork.IsConnected)
         {
             SpawnPlayer();
