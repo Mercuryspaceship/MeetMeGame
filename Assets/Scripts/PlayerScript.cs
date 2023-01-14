@@ -109,6 +109,10 @@ public class PlayerScript : MonoBehaviourPun
 
             if (col.gameObject.CompareTag("meetingRoom"))
             {
+                Destroy(videoCanvas);
+
+                // Re-instantiate the videoCanvas GameObject
+                videoCanvas = Instantiate(videoCanvas);
                 videoCanvas.SetActive(false);
             }
         }
