@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 using Agora.Rtc;
 using Agora.Util;
 using Photon.Pun;
 using Logger = Agora.Util.Logger;
+using Random = UnityEngine.Random;
 
 
 namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
@@ -59,9 +62,22 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
         private void LoadAssetData()
         {
             if (_appIdInput == null) return;
+          
             _appID = _appIdInput.appID;
+            /*
             _token = _appIdInput.token;
             _channelName = _appIdInput.channelName;
+            */
+            
+            Dictionary<string, string> tokens =
+                new Dictionary<string, string>();
+        
+           tokens.Add("Berlin", "007eJxTYLBaOH3ezjNf9u06MI8l+mb/DPnnrmVtzwNL/ErvHHB7WPBfgSE1ycgy1TDNKM0yycjEyMIsKSnZzMLS0sIwzdTE0CTVooj3cHJDICPDIlErRkYGCATx2RicUotyMvMYGAB3fCIw");
+
+           string roomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+           _token = tokens[roomName];
+           _channelName = roomName;
         }
 
 
