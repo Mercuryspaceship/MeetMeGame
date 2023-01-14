@@ -1,5 +1,7 @@
 using System;
+using Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo;
 using Photon.Pun;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,8 @@ public class PlayerScript : MonoBehaviourPun
     [SerializeField] private Text playerNameText;
     
     [SerializeField] private float movingSpeed = 5f;
+
+    [SerializeField] private JoinChannelVideo joinChannelVideo;
 
     private void Start()
     {
@@ -94,6 +98,9 @@ public class PlayerScript : MonoBehaviourPun
             if (col.gameObject.CompareTag("meetingRoom"))
             {
                 videoCanvas.SetActive(true);
+                
+                joinChannelVideo.Start();
+
             }
         }
     }
@@ -110,6 +117,18 @@ public class PlayerScript : MonoBehaviourPun
             if (col.gameObject.CompareTag("meetingRoom"))
             {
                 videoCanvas.SetActive(false);
+
+                joinChannelVideo.OnDestroy();
+
+            }
+        }
+        
+        if (!view.IsMine)
+        {
+            if (col.gameObject.CompareTag("meetingRoom"))
+            {
+                joinChannelVideo.Start();
+                joinChannelVideo.OnDestroy();
             }
         }
     }

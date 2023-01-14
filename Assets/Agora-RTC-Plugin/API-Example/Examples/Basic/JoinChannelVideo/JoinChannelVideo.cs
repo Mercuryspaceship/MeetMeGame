@@ -40,7 +40,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
         private static int userCount = 0;
 
         // Use this for initialization
-        private void Start()
+        public void Start()
         {
             LoadAssetData();
             if (CheckAppId())
@@ -115,7 +115,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 
         }
 
-        private void OnDestroy()
+        public void OnDestroy()
         {
             Debug.Log("OnDestroy");
             if (RtcEngine == null) return;

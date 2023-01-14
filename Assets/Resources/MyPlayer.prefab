@@ -345,6 +345,7 @@ MonoBehaviour:
   videoCanvas: {fileID: 1302951927224673238}
   playerNameText: {fileID: 1714325273221932442}
   movingSpeed: 5
+  joinChannelVideo: {fileID: 3000155399923746525}
 --- !u!114 &2666341820504474745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,3 +618,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5698464227450803441, guid: 38fca0318bdce4b4c888efabf3aa889a, type: 3}
   m_PrefabInstance: {fileID: 6701357182767265575}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3000155399923746525 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8404475202166469114, guid: 38fca0318bdce4b4c888efabf3aa889a, type: 3}
+  m_PrefabInstance: {fileID: 6701357182767265575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302951927224673238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7058e2e0cdc4fb5b653ebd2cdbdab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
