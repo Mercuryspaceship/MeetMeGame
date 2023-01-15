@@ -25,6 +25,8 @@ public class PlayerScript : MonoBehaviourPun
     {
         if (view.IsMine)
         {
+            gameObject.name = PhotonNetwork.LocalPlayer.NickName;
+            
             playerCamera.SetActive(true);
 
             playerNameText.text = PhotonNetwork.LocalPlayer.NickName;
