@@ -46,6 +46,8 @@ public class VideoCallScript : MonoBehaviour
 
     public void DisableVideoCall()
     {
+        videoLoadingInfo.SetActive(false);
+        
         videoKeysInfo.SetActive(false);
         
         joinChannelVideo.OnDestroy();
