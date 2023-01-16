@@ -72,7 +72,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
                 new Dictionary<string, string>();
 
             tokens.Add("Berlin",
-                "007eJxTYLBaOH3ezjNf9u06MI8l+mb/DPnnrmVtzwNL/ErvHHB7WPBfgSE1ycgy1TDNKM0yycjEyMIsKSnZzMLS0sIwzdTE0CTVooj3cHJDICPDIlErRkYGCATx2RicUotyMvMYGAB3fCIw");
+                "007eJxTYOjYF3rYP/7xlaMz2d92752x9bNc1MuUO2xzlsb+UJr0WeOdAkNqkpFlqmGaUZplkpGJkYVZUlKymYWlpYVhmqmJoUmqhbf10eSGQEaGqdqMrIwMEAjiszE4pRblZOYxMAAAcJAh/g==");
             tokens.Add("Brandenburg", "007eJxTYMg88HNiwbTmNwyG//kUTy/7z/Cu43mOzv20navuXxDkOc6qwJCaZGSZaphmlGaZZGRiZGGWlJRsZmFpaWGYZmpiaJJqMc/scHJDICPDxxudLIwMEAjiczM4FSXmpaTmJZUWpTMwAADpdCSC");
             
             string roomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
@@ -81,6 +81,16 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             _channelName = roomName;
         }
 
+        public void EnableCamera(bool enable)
+        {
+            RtcEngine.EnableLocalVideo(enable);
+            //RtcEngine.EnableVideo();
+        }
+
+        public void EnableMic(bool enable)
+        {
+            RtcEngine.EnableLocalAudio(enable);
+        }
 
         private bool CheckAppId()
         {
