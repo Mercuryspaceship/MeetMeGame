@@ -23,6 +23,8 @@ public class DoorControllerScript : MonoBehaviourPunCallbacks
         }
         else if(door.CompareTag("stateDoor"))
         {
+                StorePositionOfPlayer();
+            
                 PhotonNetwork.LeaveRoom();
                 SceneManager.LoadScene(door.name.Substring(4));
         }
@@ -33,5 +35,13 @@ public class DoorControllerScript : MonoBehaviourPunCallbacks
     {
         Debug.Log("DOOR NO");
         door.transform.Find("DoorPopUp").gameObject.SetActive(false);
+    }
+
+    private void StorePositionOfPlayer()
+    {
+        Vector3 playerPosition = GameObject.Find(PhotonNetwork.LocalPlayer.NickName).transform.position;
+        ExitGames.Client.Photon.Hashtable customProperties = new ExitGames.Client.Photon.Hashtable();
+        customProperties.Add("playerPosition", playerPosition);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(customProperties);
     }
 }

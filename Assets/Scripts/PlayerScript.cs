@@ -1,5 +1,8 @@
 using System;
+using Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo;
+using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,17 +13,21 @@ public class PlayerScript : MonoBehaviourPun
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject playerCamera;
-
-    [SerializeField] private GameObject videoCanvas;
-
+    
     [SerializeField] private Text playerNameText;
     
     [SerializeField] private float movingSpeed = 5f;
 
+    [SerializeField] private JoinChannelVideo joinChannelVideo;
+    
+    [SerializeField] private VideoCallScript videoCallScript;
+    
     private void Start()
     {
         if (view.IsMine)
         {
+            gameObject.name = PhotonNetwork.LocalPlayer.NickName;
+            
             playerCamera.SetActive(true);
 
             playerNameText.text = PhotonNetwork.LocalPlayer.NickName;
@@ -68,6 +75,16 @@ public class PlayerScript : MonoBehaviourPun
         {
             animator.SetBool("isMoving", false);
         }
+
+        if (Input.GetKeyUp(KeyCode.Y))
+        {
+            videoCallScript.ToggleCamera();
+        }
+        
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            videoCallScript.ToogleMic();
+        }
     }
 
     [PunRPC]
@@ -90,10 +107,10 @@ public class PlayerScript : MonoBehaviourPun
             {
                 col.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(true);
             }
-
+            
             if (col.gameObject.CompareTag("meetingRoom"))
             {
-                videoCanvas.SetActive(true);
+                videoCallScript.EnableVideoCall();
             }
         }
     }
@@ -109,9 +126,10 @@ public class PlayerScript : MonoBehaviourPun
 
             if (col.gameObject.CompareTag("meetingRoom"))
             {
-                videoCanvas.SetActive(false);
+                videoCallScript.DisableVideoCall();
             }
         }
+       
     }
     
 }

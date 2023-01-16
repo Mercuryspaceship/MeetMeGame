@@ -11,6 +11,7 @@ TagManager:
   - mainRoomDoor
   - loginMenuDoor
   - meetingRoom
+  - videoSurface
   layers:
   - Default
   - TransparentFX
