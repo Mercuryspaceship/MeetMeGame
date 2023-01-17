@@ -84,6 +84,11 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         _currentMessage = valueIn;
     }
 
+    public void OnCloseClick()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void DebugReturn(DebugLevel level, string message)
     {
         Debug.Log("BLA");

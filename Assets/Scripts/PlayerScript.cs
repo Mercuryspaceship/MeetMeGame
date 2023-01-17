@@ -1,5 +1,6 @@
 using System;
 using Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo;
+using Agora.Rtc;
 using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
 using UnityEditor;
@@ -13,23 +14,25 @@ public class PlayerScript : MonoBehaviourPun
 
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject playerCamera;
-    
+
     [SerializeField] private Text playerNameText;
-    
+
     [SerializeField] private float movingSpeed = 5f;
-    
+
     [SerializeField] private VideoCallScript videoCallScript;
 
     [SerializeField] private GameObject chatManager;
 
     [SerializeField] private PhotonChatManager photonChatManager;
-    
+
+    private bool _movementLocked = false;
+
     private void Start()
     {
         if (view.IsMine)
         {
             gameObject.name = PhotonNetwork.LocalPlayer.NickName;
-            
+
             playerCamera.SetActive(true);
 
             playerNameText.text = PhotonNetwork.LocalPlayer.NickName;
@@ -52,6 +55,9 @@ public class PlayerScript : MonoBehaviourPun
     // ReSharper disable Unity.PerformanceAnalysis
     private void CheckInput()
     {
+        if(!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) ||
+           Input.GetKey(KeyCode.S)))
+        {
         float moveHorizontal = Input.GetAxisRaw(("Horizontal"));
         float moveVertical = Input.GetAxisRaw(("Vertical"));
 
@@ -59,17 +65,18 @@ public class PlayerScript : MonoBehaviourPun
 
         transform.position += movement;
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             photonView.RPC("FlipTrue", RpcTarget.AllBuffered);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             photonView.RPC("FlipFalse", RpcTarget.AllBuffered);
         }
-        
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) ||
+            Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
         {
             animator.SetBool("isMoving", true);
         }
@@ -77,15 +84,20 @@ public class PlayerScript : MonoBehaviourPun
         {
             animator.SetBool("isMoving", false);
         }
-
-        if (Input.GetKeyUp(KeyCode.Y))
-        {
-            videoCallScript.ToggleCamera();
-        }
         
-        if (Input.GetKeyUp(KeyCode.X))
+        }
+
+        if (videoCallScript.VideoCanvasIsActive())
         {
-            videoCallScript.ToogleMic();
+            if (Input.GetKeyUp(KeyCode.Y))
+            {
+                videoCallScript.ToggleCamera();
+            }
+
+            if (Input.GetKeyUp(KeyCode.X))
+            {
+                videoCallScript.ToogleMic();
+            }
         }
     }
 
@@ -105,48 +117,48 @@ public class PlayerScript : MonoBehaviourPun
     {
         if (view.IsMine)
         {
-            if (col.gameObject.CompareTag("stateDoor")  || col.gameObject.CompareTag("loginMenuDoor") || col.gameObject.CompareTag("mainRoomDoor"))
+            if (col.gameObject.CompareTag("stateDoor") || col.gameObject.CompareTag("loginMenuDoor") ||
+                col.gameObject.CompareTag("mainRoomDoor"))
             {
                 col.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(true);
             }
-            
+
             if (col.gameObject.CompareTag("meetingRoom"))
             {
                 videoCallScript.EnableVideoCall();
             }
-            
+
             if (col.gameObject.CompareTag("player"))
             {
                 chatManager.SetActive(true);
 
                 string otherPlayerName = col.gameObject.transform.GetComponent<PhotonView>().Owner.NickName;
-                
+
                 photonChatManager.SetPrivateReceiver(otherPlayerName);
                 Debug.Log("Private receiver is: " + otherPlayerName);
             }
         }
     }
-    
+
     private void OnTriggerExit2D(Collider2D col)
     {
         if (view.IsMine)
         {
-            if (col.gameObject.CompareTag("stateDoor")  || col.gameObject.CompareTag("loginMenuDoor") || col.gameObject.CompareTag("mainRoomDoor"))
+            if (col.gameObject.CompareTag("stateDoor") || col.gameObject.CompareTag("loginMenuDoor") ||
+                col.gameObject.CompareTag("mainRoomDoor"))
             {
                 col.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(false);
             }
-            
+
             if (col.gameObject.CompareTag("meetingRoom"))
             {
                 videoCallScript.DisableVideoCall();
             }
-            
+
             if (col.gameObject.CompareTag("player"))
             {
                 chatManager.SetActive(false);
             }
         }
-       
     }
-    
 }
