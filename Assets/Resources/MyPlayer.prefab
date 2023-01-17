@@ -375,7 +375,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.004830092, y: -0.033810686}
@@ -430,8 +430,9 @@ MonoBehaviour:
   playerCamera: {fileID: 573332728716245396}
   playerNameText: {fileID: 1714325273221932442}
   movingSpeed: 5
-  joinChannelVideo: {fileID: 3000155399923746525}
   videoCallScript: {fileID: 2905377043675260533}
+  chatManager: {fileID: 7911170668974387528}
+  photonChatManager: {fileID: 5510195180554646244}
 --- !u!114 &2905377043675260533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,6 +923,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 602164509801557091, guid: 8d87688d7c60d4e4eaaa8ae5cbec4dee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2622199658591679104, guid: 8d87688d7c60d4e4eaaa8ae5cbec4dee, type: 3}
       propertyPath: m_Camera
       value: 
@@ -930,11 +935,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChatManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8020208430003596311, guid: 8d87688d7c60d4e4eaaa8ae5cbec4dee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d87688d7c60d4e4eaaa8ae5cbec4dee, type: 3}
 --- !u!4 &328843756318060749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 439056413695765906, guid: 8d87688d7c60d4e4eaaa8ae5cbec4dee, type: 3}
+  m_PrefabInstance: {fileID: 182288978051865951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5510195180554646244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5692474675184496571, guid: 8d87688d7c60d4e4eaaa8ae5cbec4dee, type: 3}
+  m_PrefabInstance: {fileID: 182288978051865951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911170668974387528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db02e4ce1f4b4d45b15848fcdfd8e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7911170668974387528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8020208430003596311, guid: 8d87688d7c60d4e4eaaa8ae5cbec4dee, type: 3}
   m_PrefabInstance: {fileID: 182288978051865951}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6701357182767265575

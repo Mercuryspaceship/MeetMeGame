@@ -15,7 +15,11 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     [SerializeField] private InputField chatField;
     [SerializeField] private Text chatDisplay;
+
+    private string _publicChannelName = "publicChannel";
+    
     private string _currentMessage;
+    [SerializeField] private string _privateReceiver = "test";
 
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private float scrollPosition;
@@ -48,19 +52,33 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         }
     }
 
+    public void SetPrivateReceiver(string userId)
+    {
+        _privateReceiver = userId;
+    }
+
     public void SubmitChatOnClick()
     {
+        
         if (chatField.text != "")
         {
-            _chatClient.PublishMessage("RegionChannel", _currentMessage);
+            if (_privateReceiver == "")
+            {
+                _chatClient.PublishMessage(_publicChannelName, _currentMessage);
+            }
+            else
+            {
+                _chatClient.SendPrivateMessage(_privateReceiver, _currentMessage);
+            }
+            
             chatField.text = "";
             _currentMessage = "";
         }
-        
+
         chatField.Select();
         chatField.ActivateInputField();
     }
-
+    
     public void TypeChatOnValueChange(string valueIn)
     {
         _currentMessage = valueIn;
@@ -79,7 +97,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     public void OnConnected()
     {
         Debug.Log("Connected to Chat");
-        _chatClient.Subscribe((new string[] { "RegionChannel" }));
+        _chatClient.Subscribe((new string[] { _publicChannelName }));
     }
 
     public void OnChatStateChange(ChatState state)
@@ -105,12 +123,20 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void OnPrivateMessage(string sender, object message, string channelName)
     {
-        throw new System.NotImplementedException();
+        string msgs = "";
+
+        msgs = string.Format("{0}: {1}", sender, message);
+
+        chatDisplay.text += "\n " + msgs;
+
+        Debug.Log(msgs);
+
+        scrollRect.verticalNormalizedPosition = scrollPosition;
     }
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
-        chatCanvas.SetActive(true);
+        // chatCanvas.SetActive(true);
     }
 
     public void OnUnsubscribed(string[] channels)

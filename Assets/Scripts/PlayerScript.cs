@@ -17,10 +17,12 @@ public class PlayerScript : MonoBehaviourPun
     [SerializeField] private Text playerNameText;
     
     [SerializeField] private float movingSpeed = 5f;
-
-    [SerializeField] private JoinChannelVideo joinChannelVideo;
     
     [SerializeField] private VideoCallScript videoCallScript;
+
+    [SerializeField] private GameObject chatManager;
+
+    [SerializeField] private PhotonChatManager photonChatManager;
     
     private void Start()
     {
@@ -112,6 +114,16 @@ public class PlayerScript : MonoBehaviourPun
             {
                 videoCallScript.EnableVideoCall();
             }
+            
+            if (col.gameObject.CompareTag("player"))
+            {
+                chatManager.SetActive(true);
+
+                string otherPlayerName = col.gameObject.transform.GetComponent<PhotonView>().Owner.NickName;
+                
+                photonChatManager.SetPrivateReceiver(otherPlayerName);
+                Debug.Log("Private receiver is: " + otherPlayerName);
+            }
         }
     }
     
@@ -123,10 +135,15 @@ public class PlayerScript : MonoBehaviourPun
             {
                 col.gameObject.transform.Find("DoorPopUp").gameObject.SetActive(false);
             }
-
+            
             if (col.gameObject.CompareTag("meetingRoom"))
             {
                 videoCallScript.DisableVideoCall();
+            }
+            
+            if (col.gameObject.CompareTag("player"))
+            {
+                chatManager.SetActive(false);
             }
         }
        
