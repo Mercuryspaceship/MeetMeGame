@@ -18,16 +18,6 @@ public class VideoCallScript : MonoBehaviour
 
     private Texture _tempTexture;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void EnableVideoCall()
     {
         videoLoadingInfo.SetActive(true);

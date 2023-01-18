@@ -17,6 +17,8 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
     //Ricky changed
     public class JoinChannelVideo : MonoBehaviourPun
     {
+        private AgoraTokenGenerator _agoraTokenGenerator;
+        
         [FormerlySerializedAs("appIdInput")] [SerializeField]
         private AppIdInput _appIdInput;
 
@@ -72,13 +74,20 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
                 new Dictionary<string, string>();
 
             tokens.Add("Berlin",
-                "007eJxTYOjYF3rYP/7xlaMz2d92752x9bNc1MuUO2xzlsb+UJr0WeOdAkNqkpFlqmGaUZplkpGJkYVZUlKymYWlpYVhmqmJoUmqhbf10eSGQEaGqdqMrIwMEAjiszE4pRblZOYxMAAAcJAh/g==");
+                "007eJxTYJjaf+KCYEfDhtNma3Yd2S1gMrvsNqvmhrqlZunbUo0YfqQrMKQmGVmmGqYZpVkmGZkYWZglJSWbWVhaWhimmZoYmqRaWK09ntwQyMjgqDmFgREKQXw2BqfUopzMPAYGAK4CH+c=");
             tokens.Add("Brandenburg", "007eJxTYMg88HNiwbTmNwyG//kUTy/7z/Cu43mOzv20navuXxDkOc6qwJCaZGSZaphmlGaZZGRiZGGWlJRsZmFpaWGYZmpiaJJqMc/scHJDICPDxxudLIwMEAjiczM4FSXmpaTmJZUWpTMwAADpdCSC");
             
             string roomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
-            _token = tokens[roomName];
             _channelName = roomName;
+            
+            //_token = tokens[roomName];
+
+            _agoraTokenGenerator = new AgoraTokenGenerator(_appID, "e1ff4b1a06f745329ed33bc097465c8f", _channelName, "0", PhotonNetwork.LocalPlayer.NickName, 3600);
+
+            _token = _agoraTokenGenerator.GenerateDynamicKey();
+            
+            Debug.Log(_token);
         }
 
         public void EnableCamera(bool enable)
@@ -124,6 +133,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 
             //RtcEngine.JoinChannel(_token, _channelName);
             RtcEngine.JoinChannelWithUserAccount(_token, _channelName, PhotonNetwork.LocalPlayer.NickName);
+            //RtcEngine.JoinChannel(_token, _channelName, null, 0);
         }
 
         public void OnDestroy()
