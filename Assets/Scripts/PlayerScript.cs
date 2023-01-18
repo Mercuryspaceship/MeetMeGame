@@ -76,7 +76,7 @@ public class PlayerScript : MonoBehaviourPun
             {
                 photonView.RPC("FlipFalse", RpcTarget.AllBuffered);
             }
-
+            
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) ||
                 Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
             {
@@ -113,7 +113,7 @@ public class PlayerScript : MonoBehaviourPun
     {
         spriteRenderer.flipX = false;
     }
-
+   
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (view.IsMine)
@@ -167,8 +167,8 @@ public class PlayerScript : MonoBehaviourPun
 
                 if (Input.GetKey(KeyCode.C))
                 {
-                    ActivateChat(otherPlayerName);
-                    photonView.RPC("OpenChatWindow", RpcTarget.Others, col.gameObject.GetComponent<PhotonView>().ViewID);
+                    ActivateChat();
+                    view.RPC("OpenChatWindow", RpcTarget.Others, col.gameObject.GetComponent<PhotonView>().ViewID, view.ViewID, PhotonNetwork.LocalPlayer.NickName);
                     Debug.Log("VIEW ID: " + col.gameObject.GetComponent<PhotonView>().ViewID);
                 }
             }
@@ -176,23 +176,55 @@ public class PlayerScript : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void OpenChatWindow(int targetPlayerViewID)
+    public void OpenChatWindow(int targetPlayerViewID, int senderViewId, string senderPlayerName)
     {
-        if (photonView.ViewID == targetPlayerViewID)
+        if (senderViewId == view.ViewID)
         {
-            ActivateChat(otherPlayerName);
+            GameObject targetPlayer = FindOtherPlayerForChat(targetPlayerViewID);
+
+            targetPlayer.transform.Find("ChatManager").gameObject.SetActive(true);
+            targetPlayer.transform.Find("ChatManager").GetComponent<PhotonChatManager>()
+                .SetPrivateReceiver(senderPlayerName);
+        }
+    }
+    
+    [PunRPC]
+    public void CloseChatWindow(int targetPlayerViewID, int senderViewId, string senderPlayerName)
+    {
+        if (senderViewId == view.ViewID)
+        {
+            GameObject targetPlayer = FindOtherPlayerForChat(targetPlayerViewID);
+
+            targetPlayer.transform.Find("ChatManager").gameObject.SetActive(false);
         }
     }
 
-    public void ActivateChat(string otherPlayerName)
+    private GameObject FindOtherPlayerForChat(int targetPlayerViewID)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("player");
+
+        GameObject targetPlayer = new GameObject();
+
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PhotonView>().ViewID == targetPlayerViewID)
+            {
+                targetPlayer = player;
+            }
+        }
+
+        return targetPlayer;
+    }
+
+    private void ActivateChat()
     {
         chatManager.SetActive(true);
 
         photonChatManager.SetPrivateReceiver(otherPlayerName);
         Debug.Log("Private receiver is: " + otherPlayerName);
     }
-
-    public void DeactivateChat()
+    
+    private void DeactivateChat()
     {
         chatKeysInfo.SetActive(false);
 

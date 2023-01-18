@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon;
@@ -26,6 +27,11 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
 
     private bool _isConnected;
+
+    private void OnEnable()
+    {
+        chatDisplay.text = "";
+    }
 
     // Start is called before the first frame update
     void Start()
