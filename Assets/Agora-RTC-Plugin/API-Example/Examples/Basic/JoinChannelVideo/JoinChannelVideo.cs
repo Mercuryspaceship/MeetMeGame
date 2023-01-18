@@ -17,8 +17,6 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
     //Ricky changed
     public class JoinChannelVideo : MonoBehaviourPun
     {
-        private AgoraTokenGenerator _agoraTokenGenerator;
-        
         [FormerlySerializedAs("appIdInput")] [SerializeField]
         private AppIdInput _appIdInput;
 
@@ -74,20 +72,21 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
                 new Dictionary<string, string>();
 
             tokens.Add("Berlin",
-                "007eJxTYJjaf+KCYEfDhtNma3Yd2S1gMrvsNqvmhrqlZunbUo0YfqQrMKQmGVmmGqYZpVkmGZkYWZglJSWbWVhaWhimmZoYmqRaWK09ntwQyMjgqDmFgREKQXw2BqfUopzMPAYGAK4CH+c=");
+                "007eJxTYLD6fiNd/d69irQpc03b16UcPavaz/U70DFR67FqrPTrSXkKDKlJRpaphmlGaZZJRiZGFmZJSclmFpaWFoZppiaGJqkWnIePJzcEMjK0LHjKwsgAgSA+G4NTalFOZh4DAwDMkiD5");
             tokens.Add("Brandenburg", "007eJxTYMg88HNiwbTmNwyG//kUTy/7z/Cu43mOzv20navuXxDkOc6qwJCaZGSZaphmlGaZZGRiZGGWlJRsZmFpaWGYZmpiaJJqMc/scHJDICPDxxudLIwMEAjiczM4FSXmpaTmJZUWpTMwAADpdCSC");
             
             string roomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
             _channelName = roomName;
             
-            //_token = tokens[roomName];
-
-            _agoraTokenGenerator = new AgoraTokenGenerator(_appID, "e1ff4b1a06f745329ed33bc097465c8f", _channelName, "0", PhotonNetwork.LocalPlayer.NickName, 3600);
+            _token = tokens[roomName];
+            /*
+            AgoraTokenGenerator _agoraTokenGenerator = new AgoraTokenGenerator(_appID, "e1ff4b1a06f745329ed33bc097465c8f", _channelName, "1", PhotonNetwork.LocalPlayer.NickName, 3600);
 
             _token = _agoraTokenGenerator.GenerateDynamicKey();
+            */
             
-            Debug.Log(_token);
+            Debug.Log("appID: " + _appID +  " ,channelName: " + _channelName + " ,userAccount:" + PhotonNetwork.LocalPlayer.NickName);
         }
 
         public void EnableCamera(bool enable)
@@ -132,8 +131,8 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             RtcEngine.SetClientRole(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
 
             //RtcEngine.JoinChannel(_token, _channelName);
-            RtcEngine.JoinChannelWithUserAccount(_token, _channelName, PhotonNetwork.LocalPlayer.NickName);
-            //RtcEngine.JoinChannel(_token, _channelName, null, 0);
+            //RtcEngine.JoinChannelWithUserAccount(_token, _channelName, PhotonNetwork.LocalPlayer.NickName);
+            RtcEngine.JoinChannel(_token, _channelName, "", 1);
         }
 
         public void OnDestroy()

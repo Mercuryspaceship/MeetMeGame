@@ -26,15 +26,19 @@ public class AgoraTokenGenerator
 
     public string GenerateDynamicKey()
     {
-        AccessToken token = new AccessToken(appId, appCertificate, channelName, uid);
+        AccessToken token = new AccessToken(appId, appCertificate, channelName, uid, (uint) expirationTimeInSeconds, 1);
         string token2 = SignalingToken.getToken(appId, appCertificate, userAccount, expirationTimeInSeconds);
         // Specify a privilege level and expire time for the token
+        token.addPrivilege(Privileges.kJoinChannel, Convert.ToUInt32(expirationTimeInSeconds));
+        token.addPrivilege(Privileges.kPublishAudioStream, Convert.ToUInt32(expirationTimeInSeconds));
         token.addPrivilege(Privileges.kPublishVideoStream, Convert.ToUInt32(expirationTimeInSeconds));
+
         string result = token.build();
         Debug.Log("Token based on uid :" + result);
 
         return result;
     }
     
+
     
 }

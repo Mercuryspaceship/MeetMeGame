@@ -1,9 +1,4 @@
-using System;
-using Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo;
-using Agora.Rtc;
-using ExitGames.Client.Photon.StructWrapping;
 using Photon.Pun;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,9 +19,7 @@ public class PlayerScript : MonoBehaviourPun
     [SerializeField] private GameObject chatManager;
 
     [SerializeField] private PhotonChatManager photonChatManager;
-
-    private bool _movementLocked = false;
-
+    
     private void Start()
     {
         if (view.IsMine)

@@ -12,8 +12,6 @@ public class LoginMenuControllerScript : MonoBehaviourPunCallbacks
 {
     private string _gameVersion = "1";
     
-    [SerializeField] private string versionName = "0.1";
-
     [SerializeField] private GameObject registerMenu;
 
     [SerializeField] private Text errorText;

@@ -33,7 +33,6 @@ public class DoorControllerScript : MonoBehaviourPunCallbacks
     
     public void OnClickNo()
     {
-        Debug.Log("DOOR NO");
         door.transform.Find("DoorPopUp").gameObject.SetActive(false);
     }
 
