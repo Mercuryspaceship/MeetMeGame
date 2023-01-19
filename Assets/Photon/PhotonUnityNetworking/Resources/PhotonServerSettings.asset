@@ -15,7 +15,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: 85d1c632-9648-4248-b0ca-dd33a64ed467
     AppIdFusion: 
-    AppIdChat: 
+    AppIdChat: 71b1ed4d-867f-4f63-bb72-85fb31d22191
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -40,7 +40,10 @@ MonoBehaviour:
   - Fire
   - FlipFalse
   - FlipTrue
+  - OpenChatWindow
   - RespawnSpaceship
+  - TestRPC
+  - CloseChatWindow
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
