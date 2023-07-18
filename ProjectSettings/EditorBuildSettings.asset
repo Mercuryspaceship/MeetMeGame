@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainRoom.unity
     guid: a6f77d781dda5584a90e9990018490f8
   - enabled: 1
-    path: Assets/Scenes/StateRooms/Berlin.unity
+    path: Assets/Scenes/StateRooms/California.unity
     guid: 59e7200921c360b40b919decbd950ce3
   - enabled: 1
-    path: Assets/Scenes/StateRooms/Brandenburg.unity
+    path: Assets/Scenes/StateRooms/Iceland.unity
     guid: 53bc5f104a07ad244932bd4dc546c48d
   m_configObjects: {}
