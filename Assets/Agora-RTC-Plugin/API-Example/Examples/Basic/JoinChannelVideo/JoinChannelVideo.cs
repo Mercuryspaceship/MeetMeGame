@@ -71,9 +71,9 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             Dictionary<string, string> tokens =
                 new Dictionary<string, string>();
 
-            tokens.Add("Berlin",
-                "007eJxTYLD6fiNd/d69irQpc03b16UcPavaz/U70DFR67FqrPTrSXkKDKlJRpaphmlGaZZJRiZGFmZJSclmFpaWFoZppiaGJqkWnIePJzcEMjK0LHjKwsgAgSA+G4NTalFOZh4DAwDMkiD5");
-            tokens.Add("Brandenburg", "007eJxTYMg88HNiwbTmNwyG//kUTy/7z/Cu43mOzv20navuXxDkOc6qwJCaZGSZaphmlGaZZGRiZGGWlJRsZmFpaWGYZmpiaJJqMc/scHJDICPDxxudLIwMEAjiczM4FSXmpaTmJZUWpTMwAADpdCSC");
+            tokens.Add("California",
+                "007eJxTYJh7ZqWf7+3ajvivh9QfaPotNJvxeX+cXEKkzf2Z2UbNNucUGFKTjCxTDdOM0iyTjEyMLMySkpLNLCwtLQzTTE0MTVIttrZsT2kIZGTw3yHPysgAgSA+F4NzYk5mWn5RXmYiAwMAZ2EiZw==");
+            tokens.Add("Iceland", "007eJxTYLC+VjDFzb2Ou4S9af2Tvf+i16i859ja8WBmUHjfi32/rK8rMKQmGVmmGqYZpVkmGZkYWZglJSWbWVhaWhimmZoYmqRaeLdtT2kIZGRgKVRiYmSAQBCfncEzOTUnMS+FgQEABu8hBA==");
             
             string roomName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
