@@ -190,12 +190,11 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
 
             videoSurface.OnTextureSizeModify += (int width, int height) =>
             {
-                //Ricky wrote
                 float size = 0.9f;
 
                 float scale = (float)height / (float)width;
 
-                //Ricky changed
+                //R changed
                 videoSurface.transform.localScale = new Vector3(-size, size * scale, 1);
                 Debug.Log("OnTextureSizeModify: " + width + "  " + height);
             };
@@ -355,6 +354,7 @@ namespace Agora_RTC_Plugin.API_Example.Examples.Basic.JoinChannelVideo
             _videoSample.Log.UpdateLog("OnClientRoleChanged");
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public override void OnUserJoined(RtcConnection connection, uint uid, int elapsed)
         {
             _videoSample.Log.UpdateLog(string.Format("OnUserJoined uid: ${0} elapsed: ${1}", uid, elapsed));
